@@ -1,0 +1,19 @@
+<div class="task-list">
+  <div class="list-header">
+    <h2>{{ statusLabels[status] }}</h2>
+    <span class="task-count">{{ filteredTasks.length }} tâche(s)</span>
+  </div>
+
+  <div class="tasks-container">
+    @if (filteredTasks.length === 0) {
+      <p class="no-tasks">Aucune tâche dans cette catégorie</p>
+    } @else {
+      @for (task of filteredTasks; track task.id) {
+        <app-task-item
+          [task]="task"
+          (statusChange)="onTaskStatusChange($event)">
+        </app-task-item>
+      }
+    }
+  </div>
+</div>

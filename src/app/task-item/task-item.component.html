@@ -1,0 +1,20 @@
+<div class="task-item" [ngClass]="getStatusClass()">
+  <div class="task-content">
+    <h3 class="task-title">{{ task.title }}</h3>
+    <p class="task-description">{{ task.description }}</p>
+    <span class="task-status-badge">{{ statusLabels[task.status] }}</span>
+  </div>
+  <div class="task-actions">
+    <label>Changer le statut :</label>
+    <div class="status-buttons">
+      @for (status of statuses; track status) {
+        <button
+          [class.active]="task.status === status"
+          [disabled]="task.status === status"
+          (click)="onStatusChange(status)">
+          {{ statusLabels[status] }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

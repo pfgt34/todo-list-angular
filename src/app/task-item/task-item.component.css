@@ -1,0 +1,119 @@
+.task-item {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #ccc;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.task-item.status-backlog {
+  border-left-color: #6c757d;
+}
+
+.task-item.status-a-faire {
+  border-left-color: #007bff;
+}
+
+.task-item.status-en-cours {
+  border-left-color: #ffc107;
+}
+
+.task-item.status-terminee {
+  border-left-color: #28a745;
+}
+
+.task-content {
+  margin-bottom: 12px;
+}
+
+.task-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.task-description {
+  margin: 0 0 8px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.task-status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-backlog .task-status-badge {
+  background: #e9ecef;
+  color: #6c757d;
+}
+
+.status-a-faire .task-status-badge {
+  background: #e7f1ff;
+  color: #007bff;
+}
+
+.status-en-cours .task-status-badge {
+  background: #fff8e1;
+  color: #f57c00;
+}
+
+.status-terminee .task-status-badge {
+  background: #e8f5e9;
+  color: #28a745;
+}
+
+.task-actions {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+
+.task-actions label {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.status-buttons button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f8f9fa;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.status-buttons button:hover:not(:disabled) {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.status-buttons button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.status-buttons button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

@@ -1,0 +1,29 @@
+<div class="stats-container">
+  <h2>📊 Statistiques</h2>
+
+  <div class="stats-summary">
+    <div class="stat-card total">
+      <span class="stat-number">{{ totalTasks }}</span>
+      <span class="stat-label">Total des tâches</span>
+    </div>
+    <div class="stat-card completion">
+      <span class="stat-number">{{ completionRate }}%</span>
+      <span class="stat-label">Taux de complétion</span>
+    </div>
+  </div>
+
+  <div class="stats-breakdown">
+    @for (status of statuses; track status) {
+      <div class="stat-row">
+        <span class="stat-status">{{ statusLabels[status] }}</span>
+        <div class="progress-bar">
+          <div
+            class="progress-fill progress-{{ status }}"
+            [style.width.%]="getPercentage(status)">
+          </div>
+        </div>
+        <span class="stat-count">{{ getCountByStatus(status) }}</span>
+      </div>
+    }
+  </div>
+</div>

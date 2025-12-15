@@ -1,0 +1,26 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>📋 {{ title }}</h1>
+    <p class="subtitle">Gérez vos tâches facilement</p>
+  </header>
+
+  <div class="main-content">
+    <!-- Statistiques -->
+    <aside class="sidebar">
+      <app-task-stats [tasks]="tasks"></app-task-stats>
+    </aside>
+
+    <!-- Listes de tâches par statut -->
+    <main class="task-board">
+      @for (status of statuses; track status) {
+        <app-task-list
+          [tasks]="tasks"
+          [status]="status"
+          (statusChange)="onStatusChange($event)">
+        </app-task-list>
+      }
+    </main>
+  </div>
+</div>
+
+
