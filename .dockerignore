@@ -1,0 +1,34 @@
+# Dépendances Node
+node_modules/
+npm-debug.log*
+
+# Build Angular
+dist/
+.angular/
+
+# Git
+.git/
+.gitignore
+
+# IDE & OS
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Tests
+coverage/
+*.spec.ts
+
+# CI/CD
+.github/
+
+# Docker
+Dockerfile
+.dockerignore
+nginx.conf
+
+# Environnements locaux
+.env
+.env.local
+*.env.local

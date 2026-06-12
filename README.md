@@ -1,59 +1,65 @@
-# TaskManager
+# TaskManager — Todo List Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+Application de gestion de tâches développée avec Angular.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 CI/CD — Docker Build & Push
+
+Ce projet utilise **GitHub Actions** pour automatiser la construction et la publication d'une image Docker à chaque push sur `main`.
+
+### Comment ça fonctionne
+
+Le workflow `.github/workflows/docker-build.yml` se déclenche sur :
+- **Push** vers `main` → build **et** push de l'image vers Docker Hub
+- **Pull Request** vers `main` → build uniquement (pas de push)
+
+Les étapes du workflow :
+1. Checkout du code
+2. Configuration de Docker Buildx (builds multi-architectures)
+3. Connexion à Docker Hub (sur push uniquement)
+4. Extraction des métadonnées (tags `latest`, `sha-<hash>`, nom de branche)
+5. Build et push de l'image avec cache GitHub Actions
+
+### Secrets GitHub requis
+
+À configurer dans **Settings → Secrets and variables → Actions** de ton repo :
+
+| Secret | Description |
+|---|---|
+| `DOCKER_HUB_USERNAME` | Ton nom d'utilisateur Docker Hub |
+| `DOCKER_HUB_TOKEN` | Token d'accès Docker Hub (généré dans Docker Hub → Account Settings → Security) |
+
+### Build manuel
 
 ```bash
+# Builder l'image localement
+docker build -t todo-list-angular .
+
+# Lancer l'application (port 8080 → 80 du conteneur)
+docker run -p 8080:80 todo-list-angular
+
+# L'app est accessible sur http://localhost:8080
+```
+
+### Image Docker Hub
+
+L'image publiée est disponible sur :
+```
+docker pull <DOCKER_HUB_USERNAME>/todo-list-angular:latest
+```
+
+---
+
+## 🛠️ Développement local
+
+```bash
+# Installer les dépendances
+npm install
+
+# Lancer en mode développement
 ng serve
+
+# Builder pour la production
+ng build --configuration=production
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
