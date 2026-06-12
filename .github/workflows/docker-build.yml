@@ -1,11 +1,11 @@
 name: Docker Build & Push
 
-# Déclencheurs : push ou pull request sur la branche main
+# Déclencheurs : push ou pull request sur la branche master
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -38,7 +38,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha,prefix=sha-
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
 
       # 5. Construire et pousser l'image Docker
       - name: Build and push Docker image
