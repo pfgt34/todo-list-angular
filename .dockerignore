@@ -26,7 +26,6 @@ coverage/
 # Docker
 Dockerfile
 .dockerignore
-nginx.conf
 
 # Environnements locaux
 .env
